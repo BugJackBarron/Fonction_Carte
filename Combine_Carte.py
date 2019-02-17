@@ -38,6 +38,8 @@ class Carte(object):
         elif (len(expression)==2) and (self.ctype=="operateur") :
             return parse_expr("("+str(expression[0])+")"
                     +self.Value+"("+str(expression[1])+")",evaluate=False)
+        elif (len(expression)==1) and (self.ctype=='fonction') :
+            return parse_expr(self.Value.format(e=expression[0]))
         else :
             """Il faudra traiter une erreur dans ce cas"""
             pass
@@ -54,14 +56,14 @@ class Expression(object):
             """Méthode interne à la classe de traitement des cartes. 
             Règles utilisées :
                 1) On lit la liste de gauche à droite, et on compose tant qu'on
-                ne tombe pas sur une carte opérateur ( numéro >=100)
+                ne tombe pas sur une carte opérateur ( 1000> numéro >=100)
                 2) Si on tombe sur un opérateur, les cartes suivantes forment
                 elle-même une nouvelle expression, qu'on traite avec les règles
                 ici établies.
             Il est bien sûr possible de modifier les règles, mais il faut 
             changer le code de génération ici."""
             for i,c in enumerate(liste) :
-                if c>=100 :
+                if (c>=100) and (c<1000) :
                     E=Expression(str(self.x))
                     return cartes[c].Compose(self.expr,E._gen(liste[i+1:]))
                 else :
@@ -99,6 +101,16 @@ if __name__=="__main__" :
         cartes[30+i]=Carte(30+i,"*(-{})".format(i),'operation')
         cartes[40+i]=Carte(40+i,"/{}".format(i),'operation')
         cartes[50+i]=Carte(50+i,"/(-{})".format(i),'operation')
+    cartes[0]=Carte(0,"*0",'operation')
+    cartes[1000]=Carte(1000,"({e})**2",'fonction')
+    cartes[1001]=Carte(1001,"({e})**3",'fonction')
+    cartes[1002]=Carte(1002,"1/({e})",'fonction')
+    cartes[1003]=Carte(1003,"sqrt({e})",'fonction')
+    cartes[1004]=Carte(1004,"abs({e})",'fonction')
+    cartes[1005]=Carte(1005,"sin({e})",'fonction')
+    cartes[1006]=Carte(1006,"cos({e})",'fonction')
+    cartes[1007]=Carte(1007,"exp({e})",'fonction')
+    cartes[1008]=Carte(1008,"log({e})",'fonction')
     cartes[100]=Carte(100,"+",'operateur')
     cartes[200]=Carte(200,"-",'operateur')
     cartes[300]=Carte(300,"*",'operateur')
