@@ -118,6 +118,7 @@ if __name__=="__main__" :
     cartes[500]=Carte(500,"**",'operateur')
     while True :
         print("""Les cartes sont définies par leur numéro :
+            0 => Produit par 0 ( nécessaire pour les fonctions constantes);
             1=>9 : Addition du nombre correspondant ;
             11=>19 : Soustraction du nombre correspondant au chiffre des unités ;
             21=>29 : Multiplication par le chiffre des unités ;
@@ -128,7 +129,17 @@ if __name__=="__main__" :
             200 : Opérateur soustractif ;
             300 : Opérateur multiplicatif ;
             400 : Opérateur fractionnaire ;
-            500 : Opérateur d'exponentiation.
+            500 : Opérateur d'exponentiation ;
+            1000 : Fonction carré ;
+            1001 : Fonction cube ;
+            1002 : Fonction inverse ;
+            1003 : Fonction racine carrée ;
+            1004 : Fonction valeur absolue ;
+            1005 : Fonction sinus ( non testée pour les valeurs) :
+            1006 : Fonction cosinus ( non testée pour les valeurs) :
+            1007 : Fonction exponentielle ;
+            1008 : Fonction logarithme népérien.
+                
             """)
         lst_carte=input("Entrez la liste des cartes (avec des espaces entre chaque - q ou Q pour quitter ): ")
         if lst_carte=='q' or lst_carte=='Q' : break
