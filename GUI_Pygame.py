@@ -19,11 +19,11 @@ if __name__=="__main__" :
     #fenetre est une variable qui contient l'affichage ( display)
     fenetre = pygame.display.set_mode((Largeur, Hauteur))
     continuer=True
-    while continuer : #tant que continuer est égal à 1, on recommence la boucle
-       for evenement in pygame.event.get() : #Pour chaque evenement
-            if evenement.type == QUIT :#Si c'est QUIT
+    while continuer :
+       for evenement in pygame.event.get() :
+            if evenement.type == QUIT :
                 continuer=False
             if evenement.type==KEYDOWN and evenement.key==K_F10 :
                 pass
-pygame.diplay.quit()
+pygame.display.quit()
                 
