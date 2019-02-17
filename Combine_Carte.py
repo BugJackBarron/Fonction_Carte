@@ -52,11 +52,11 @@ class Expression(object):
             
         def _gen(self,liste) :
             """Méthode interne à la classe de traitement des cartes. 
-            Règles utilisée :
+            Règles utilisées :
                 1) On lit la liste de gauche à droite, et on compose tant qu'on
                 ne tombe pas sur une carte opérateur ( numéro >=100)
                 2) Si on tombe sur un opérateur, les cartes suivantes forment
-                elle-même une nouvelle expression, qu'on tratite avec les règles
+                elle-même une nouvelle expression, qu'on traite avec les règles
                 ici établies.
             Il est bien sûr possible de modifier les règles, mais il faut 
             changer le code de génération ici."""
@@ -104,24 +104,26 @@ if __name__=="__main__" :
     cartes[300]=Carte(300,"*",'operateur')
     cartes[400]=Carte(400,"/",'operateur')
     cartes[500]=Carte(500,"**",'operateur')
-    print("""Les cartes sont définies par leur numéro :
-        1=>9 : Addition du nnombre correspondant ;
-        11=>19 : Soustraction du nombre correspondant au chiffre des unités ;
-        21=>29 : Multiplication par le chiffre des unités ;
-        31=>39 : Multiplication par l'opposé du chiffre des unités ;
-        41=>49 : Division par le chiffre des unités ;
-        51=>59 : Division par l'opposé du chiffre des unités ;
-        100 : Opérateur additif ;
-        200 : Opérateur soustractif ;
-        300 : Opérateur multiplicatif ;
-        400 : Opérateur fractionnaire ;
-        500 : Opérateur d'exponentiation.
-        """)
-    lst_carte=input("Entrez la liste des cartes (avec des espaces entre chaque ): ")
-    E=Expression('x')
-    E.genere_expr(lst_carte)
-    print("Expression obtenue avec les cartes dans l'ordre : ")
-    sp.pprint(E.expr)
-    print("Expression simplifiée : ")
-    sp.pprint(E.simplifie())
-    
+    while True :
+        print("""Les cartes sont définies par leur numéro :
+            1=>9 : Addition du nombre correspondant ;
+            11=>19 : Soustraction du nombre correspondant au chiffre des unités ;
+            21=>29 : Multiplication par le chiffre des unités ;
+            31=>39 : Multiplication par l'opposé du chiffre des unités ;
+            41=>49 : Division par le chiffre des unités ;
+            51=>59 : Division par l'opposé du chiffre des unités ;
+            100 : Opérateur additif ;
+            200 : Opérateur soustractif ;
+            300 : Opérateur multiplicatif ;
+            400 : Opérateur fractionnaire ;
+            500 : Opérateur d'exponentiation.
+            """)
+        lst_carte=input("Entrez la liste des cartes (avec des espaces entre chaque - q ou Q pour quitter ): ")
+        if lst_carte=='q' or lst_carte=='Q' : break
+        E=Expression('x')
+        E.genere_expr(lst_carte)
+        print("Expression obtenue avec les cartes dans l'ordre : ")
+        sp.pprint(E.expr)
+        print("Expression simplifiée : ")
+        sp.pprint(E.simplifie())
+    print("Au revoir !")
