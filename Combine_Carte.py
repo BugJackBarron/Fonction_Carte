@@ -39,7 +39,7 @@ class Carte(object):
             return parse_expr("("+str(expression[0])+")"
                     +self.Value+"("+str(expression[1])+")",evaluate=False)
         elif (len(expression)==1) and (self.ctype=='fonction') :
-            return parse_expr(self.Value.format(e=expression[0]))
+            return parse_expr(self.Value.format(e=expression[0]),evaluate=False)
         else :
             """Il faudra traiter une erreur dans ce cas"""
             pass
